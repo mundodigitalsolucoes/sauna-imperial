@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as LocalizacaoRouteImport } from './routes/localizacao'
 import { Route as EstruturaRouteImport } from './routes/estrutura'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SobreRoute = SobreRouteImport.update({
@@ -29,6 +30,11 @@ const EstruturaRoute = EstruturaRouteImport.update({
   path: '/estrutura',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -37,12 +43,14 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/blog': typeof BlogRoute
   '/estrutura': typeof EstruturaRoute
   '/localizacao': typeof LocalizacaoRoute
   '/sobre': typeof SobreRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/blog': typeof BlogRoute
   '/estrutura': typeof EstruturaRoute
   '/localizacao': typeof LocalizacaoRoute
   '/sobre': typeof SobreRoute
@@ -50,20 +58,22 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/blog': typeof BlogRoute
   '/estrutura': typeof EstruturaRoute
   '/localizacao': typeof LocalizacaoRoute
   '/sobre': typeof SobreRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/estrutura' | '/localizacao' | '/sobre'
+  fullPaths: '/' | '/blog' | '/estrutura' | '/localizacao' | '/sobre'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/estrutura' | '/localizacao' | '/sobre'
-  id: '__root__' | '/' | '/estrutura' | '/localizacao' | '/sobre'
+  to: '/' | '/blog' | '/estrutura' | '/localizacao' | '/sobre'
+  id: '__root__' | '/' | '/blog' | '/estrutura' | '/localizacao' | '/sobre'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BlogRoute: typeof BlogRoute
   EstruturaRoute: typeof EstruturaRoute
   LocalizacaoRoute: typeof LocalizacaoRoute
   SobreRoute: typeof SobreRoute
@@ -92,6 +102,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EstruturaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -104,6 +121,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BlogRoute: BlogRoute,
   EstruturaRoute: EstruturaRoute,
   LocalizacaoRoute: LocalizacaoRoute,
   SobreRoute: SobreRoute,
