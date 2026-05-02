@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as LocalizacaoRouteImport } from './routes/localizacao'
 import { Route as EstruturaRouteImport } from './routes/estrutura'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SobreRoute = SobreRouteImport.update({
   id: '/sobre',
   path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LocalizacaoRoute = LocalizacaoRouteImport.update({
+  id: '/localizacao',
+  path: '/localizacao',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EstruturaRoute = EstruturaRouteImport.update({
@@ -32,30 +38,34 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/estrutura': typeof EstruturaRoute
+  '/localizacao': typeof LocalizacaoRoute
   '/sobre': typeof SobreRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/estrutura': typeof EstruturaRoute
+  '/localizacao': typeof LocalizacaoRoute
   '/sobre': typeof SobreRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/estrutura': typeof EstruturaRoute
+  '/localizacao': typeof LocalizacaoRoute
   '/sobre': typeof SobreRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/estrutura' | '/sobre'
+  fullPaths: '/' | '/estrutura' | '/localizacao' | '/sobre'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/estrutura' | '/sobre'
-  id: '__root__' | '/' | '/estrutura' | '/sobre'
+  to: '/' | '/estrutura' | '/localizacao' | '/sobre'
+  id: '__root__' | '/' | '/estrutura' | '/localizacao' | '/sobre'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   EstruturaRoute: typeof EstruturaRoute
+  LocalizacaoRoute: typeof LocalizacaoRoute
   SobreRoute: typeof SobreRoute
 }
 
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/sobre'
       fullPath: '/sobre'
       preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/localizacao': {
+      id: '/localizacao'
+      path: '/localizacao'
+      fullPath: '/localizacao'
+      preLoaderRoute: typeof LocalizacaoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/estrutura': {
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   EstruturaRoute: EstruturaRoute,
+  LocalizacaoRoute: LocalizacaoRoute,
   SobreRoute: SobreRoute,
 }
 export const routeTree = rootRouteImport
