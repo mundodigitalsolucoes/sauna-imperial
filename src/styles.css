@@ -173,3 +173,127 @@
   .hairline { height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0.5; }
   html { scroll-behavior: smooth; }
 }
+
+/* PREMIUM IMAGE EFFECTS */
+
+.premium-image-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  background: #111;
+  transition:
+    transform .5s ease,
+    border-color .4s ease,
+    box-shadow .5s ease;
+}
+
+.premium-image-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(212, 175, 55, 0.75);
+  box-shadow:
+    0 10px 40px rgba(0,0,0,.45),
+    0 0 30px rgba(212,175,55,.18);
+}
+
+.premium-image-card img {
+  transition:
+    transform .8s ease,
+    filter .8s ease;
+  filter:
+    brightness(.88)
+    contrast(1.08)
+    saturate(1.05);
+}
+
+.premium-image-card:hover img {
+  transform: scale(1.08);
+  filter:
+    brightness(1)
+    contrast(1.12)
+    saturate(1.08);
+}
+
+.premium-shine {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255,255,255,.08) 35%,
+      transparent 70%
+    );
+  transform: translateX(-120%);
+  transition: transform 1.2s ease;
+  pointer-events: none;
+}
+
+.premium-image-card:hover .premium-shine {
+  transform: translateX(120%);
+}
+
+.premium-hero-image {
+  animation: heroZoom 18s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+.gold-glow {
+  position: relative;
+  z-index: 1;
+}
+
+.gold-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(212,175,55,.65),
+      rgba(212,175,55,.15),
+      rgba(255,255,255,.08)
+    );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.gold-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(212,175,55,.22),
+      transparent 65%
+    );
+  opacity: 0;
+  transition: opacity .4s ease;
+  pointer-events: none;
+}
+
+.gold-glow:hover::after {
+  opacity: 1;
+}
+
+.shadow-premium {
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.45),
+    0 0 30px rgba(212,175,55,.12);
+}

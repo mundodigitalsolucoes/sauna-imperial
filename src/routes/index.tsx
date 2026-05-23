@@ -1,12 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section } from "@/components/site/Section";
 import { SITE, whatsappUrl } from "@/lib/site";
-import hero from "@/assets/hero-sauna.jpg";
-import pool from "@/assets/pool.jpg";
-import hydro from "@/assets/hydro.jpg";
-import lounge from "@/assets/lounge.jpg";
-import shower from "@/assets/shower.jpg";
-import lockers from "@/assets/lockers.jpg";
+import fachadaImg from "@/assets/real/fachada.jpeg";
+import ambienteImg from "@/assets/real/ambiente.jpeg";
+import sinucaImg from "@/assets/real/sinuca.jpeg";
+import piscinaImg from "@/assets/real/piscina.jpeg";
+import hidroImg from "@/assets/real/hidro.jpeg";
+import duchasImg from "@/assets/real/duchas.jpeg";
+import barImg from "@/assets/real/bar.jpeg";
+import saunaImg from "@/assets/real/sauna.jpeg";
 import { Star, MapPin, ArrowRight, Waves, Flame, Droplets, ShieldCheck, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -16,7 +18,7 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Sauna em São José do Rio Preto com piscina, hidromassagem, sauna seca, sauna a vapor e ambiente reservado. Atendimento discreto e estrutura premium." },
       { property: "og:title", content: "Sauna Imperial — Spa urbano masculino" },
       { property: "og:description", content: "Ambiente reservado, estrutura completa e bem-estar em São José do Rio Preto." },
-      { property: "og:image", content: hero },
+      { property: "og:image", content: fachadaImg },
     ],
   }),
   component: Home,
@@ -31,12 +33,12 @@ const experiences = [
 ];
 
 const galleryItems = [
-  { src: pool, title: "Piscina", desc: "Área reservada para relaxar com tranquilidade.", featured: true },
-  { src: hydro, title: "Hidromassagem", desc: "Pausa, conforto e alívio da rotina." },
-  { src: lounge, title: "Ambiente", desc: "Espaços amplos e acolhedores." },
-  { src: shower, title: "Duchas", desc: "Estrutura limpa e bem cuidada." },
-  { src: lockers, title: "Armários", desc: "Mais praticidade durante a visita." },
-  { src: hero, title: "Entrada", desc: "Localização fácil em Rio Preto." },
+  { src: piscinaImg, title: "Piscina", desc: "Área reservada para relaxar com tranquilidade.", featured: true },
+  { src: hidroImg, title: "Hidromassagem", desc: "Pausa, conforto e alívio da rotina." },
+  { src: sinucaImg, title: "Área social", desc: "Espaço para relaxar e sair da rotina." },
+  { src: duchasImg, title: "Duchas", desc: "Estrutura limpa e bem cuidada." },
+  { src: barImg, title: "American Bar", desc: "Ambiente acolhedor e sofisticado." },
+  { src: fachadaImg, title: "Entrada", desc: "Localização fácil em Rio Preto." },
 ];
 
 const testimonials = [
@@ -50,7 +52,7 @@ function Home() {
     <>
       {/* HERO */}
       <section className="relative min-h-[100svh] flex items-center overflow-hidden">
-        <img src={hero} alt="Fachada e entrada da Sauna Imperial em São José do Rio Preto" className="premium-hero-image absolute inset-0 h-full w-full object-cover opacity-75" width={1920} height={1080} />
+        <img src={fachadaImg} alt="Fachada e entrada da Sauna Imperial em São José do Rio Preto" className="premium-hero-image absolute inset-0 h-full w-full object-cover opacity-75" width={1920} height={1080} />
         <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-background/75 to-background" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
         <div className="container-x relative z-10 py-24">
@@ -81,10 +83,18 @@ function Home() {
       </section>
 
       {/* GALLERY */}
-      <Section eyebrow="Ambiente" title="Um espaço real, reservado e bem cuidado" subtitle="Fotos reais da estrutura para transmitir confiança antes da primeira visita.">
+      <Section
+  eyebrow="Ambiente"
+  title="Um espaço reservado para relaxar com conforto"
+  subtitle="Conheça os ambientes da Sauna Imperial e descubra uma experiência de bem-estar em Rio Preto."
+>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
           {galleryItems.map((item, i) => (
-            <figure key={item.title} className={`premium-image-card group ${item.featured ? "col-span-2 row-span-2 aspect-square md:aspect-[4/5]" : "aspect-square"}`} style={{ animationDelay: `${i * 90}ms` }}>
+            <figure
+  key={item.title}
+  className={`premium-image-card gold-glow group shadow-premium ${item.featured ? "col-span-2 row-span-2 aspect-square md:aspect-[4/5]" : "aspect-square"}`}
+  style={{ animationDelay: `${i * 90}ms` }}
+>
               <img src={item.src} alt={`${item.title} da Sauna Imperial em São José do Rio Preto`} loading={i === 0 ? "eager" : "lazy"} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-80" />
               <figcaption className="absolute inset-x-0 bottom-0 p-5">
@@ -101,7 +111,7 @@ function Home() {
       <Section eyebrow="Experiência" title="Conforto, silêncio e estrutura completa" subtitle="Transforme sua rotina em um momento de pausa, conforto e bem-estar.">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {experiences.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="group p-8 bg-card border border-border/60 rounded-3xl hover:border-gold/60 hover:shadow-gold transition duration-300">
+            <div key={title} className="gold-glow group p-8 bg-card border border-border/60 rounded-3xl shadow-premium hover:border-gold/60 hover:shadow-gold hover:-translate-y-1 transition duration-300">
               <Icon className="h-7 w-7 text-gold mb-5 transition-transform duration-300 group-hover:scale-110" />
               <h3 className="text-xl text-foreground mb-2">{title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
@@ -122,8 +132,23 @@ function Home() {
           ))}
         </div>
         <div className="mt-10 flex flex-wrap gap-4">
-          <a href="#" className="text-sm text-gold hover:underline">Ver avaliações →</a>
-          <a href="#" className="text-sm text-muted-foreground hover:text-gold">Avaliar no Google →</a>
+          <a
+  href="https://www.google.com/search?q=Sauna+Imperial+Rio+Preto"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-sm text-gold hover:underline"
+>
+  Ver avaliações →
+</a>
+
+<a
+  href="https://g.page/r/CZk7mHBJIk1pEAE/review"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-sm text-muted-foreground hover:text-gold"
+>
+  Avaliar no Google →
+</a>
         </div>
       </Section>
 
@@ -138,8 +163,8 @@ function Home() {
               </li>
             ))}
           </ul>
-          <div className="premium-image-card aspect-[4/5]">
-            <img src={lounge} alt="Lounge reservado da Sauna Imperial" loading="lazy" className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
+          <div className="premium-image-card gold-glow shadow-premium aspect-[4/5]">
+            <img src={ambienteImg} alt="Ambiente reservado da Sauna Imperial" loading="lazy" className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent" />
             <span className="premium-shine" />
           </div>

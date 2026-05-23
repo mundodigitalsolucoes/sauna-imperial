@@ -32,6 +32,19 @@ export function Footer() {
         <div className="container-x py-6 text-xs text-muted-foreground/70 flex flex-wrap justify-between gap-2">
           <span>© {new Date().getFullYear()} Sauna Imperial. Todos os direitos reservados.</span>
           <span>{SITE.city} — {SITE.state}</span>
+          <div className="mt-10 pt-6 border-t border-border/40 text-center">
+  <p className="text-xs text-muted-foreground">
+    Desenvolvido por{" "}
+    <a
+      href="https://mundodigitalsolucoes.com.br"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-gold hover:underline"
+    >
+      Mundo Digital Soluções
+    </a>
+  </p>
+</div>
         </div>
       </div>
     </footer>
